@@ -1,5 +1,5 @@
 <?php
-namespace Ksf\DynamicPricing;
+namespace Ksfraser\DynamicPricing;
 
 /**
  * Pricing Rule interface

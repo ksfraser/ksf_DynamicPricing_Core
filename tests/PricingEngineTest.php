@@ -1,5 +1,5 @@
 <?php
-namespace Ksf\DynamicPricing\Tests;
+namespace Ksfraser\DynamicPricing\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Ksf\DynamicPricing\PricingEngine;
