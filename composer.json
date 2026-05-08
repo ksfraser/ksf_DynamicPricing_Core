@@ -5,7 +5,7 @@
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
-            "Ksfraser\\DynamicPricing\\": "src/DynamicPricing/"
+            "Ksfraser\\": "src/Ksfraser/"
         }
     },
     "require": {
