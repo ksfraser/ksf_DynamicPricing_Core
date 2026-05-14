@@ -2,9 +2,9 @@
 namespace Ksfraser\DynamicPricing\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Ksf\DynamicPricing\PricingEngine;
-use Ksf\DynamicPricing\PercentageDiscountRule;
-use Ksf\DynamicPricing\FixedDiscountRule;
+use Ksfraser\DynamicPricing\PricingEngine;
+use Ksfraser\DynamicPricing\PercentageDiscountRule;
+use Ksfraser\DynamicPricing\FixedDiscountRule;
 
 class PricingEngineTest extends TestCase {
     
@@ -33,17 +33,18 @@ class PricingEngineTest extends TestCase {
     }
     
     public function testMultipleRulesWithPriority(): void {
-        // Higher priority (lower number) should apply first
-        $rule1 = new PercentageDiscountRule(20, 20, false); // 20% off
-        $rule2 = new FixedDiscountRule(10, 10, false); // $10 off, higher priority
+        // Lower priority number = applies first
+        $rule1 = new PercentageDiscountRule(20, 20, false); // 20% off, priority 20
+        $rule2 = new FixedDiscountRule(10, 10, false); // $10 off, priority 10 (applies first)
         
         $this->engine->addRule($rule1);
         $this->engine->addRule($rule2);
         
+        // Rule2 (priority 10) applies first: 100 - 10 = 90
+        // Then rule1 (priority 20): 90 - 20% = 90 - 18 = 72
         $finalPrice = $this->engine->calculatePrice(100, ['product_id' => 1, 'quantity' => 1]);
         
-        // Rule2 applies first (priority 10), then rule1 (priority 20)
-        $this->assertEquals(70, $finalPrice); // 100 - 10 - 20 = 70
+        $this->assertEquals(72, $finalPrice);
     }
     
     public function testStopProcessing(): void {

@@ -13,9 +13,9 @@ class PricingEngine {
     /**
      * Add a pricing rule
      * 
-     * @param PricingRule $rule
+     * @param PricingRuleInterface $rule
      */
-    public function addRule(PricingRule $rule): void {
+    public function addRule(PricingRuleInterface $rule): void {
         $this->rules[] = $rule;
     }
     
